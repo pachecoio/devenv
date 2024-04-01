@@ -39,5 +39,14 @@
             path: ~/.zshrc
             line: "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
+    - name: Customize theme
+      lineinfile:
+        path: ~/.zshrc
+        line: 'ZSH_THEME="fino"'
+        regexp: '^ZSH_THEME='
+
+
+
+
 
     
