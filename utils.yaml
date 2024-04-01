@@ -2,33 +2,28 @@
   tags:
     - utils
     - jq
+  vars:
+    tools:
+      - jq
+      - curl
+      - stow
   block:
-    - name: Install JQ
-      block:
-        - name: Install JQ on arch
-          when: ansible_distribution == "Archlinux"
-          pacman:
-            name: jq
-            state: present
-        - name: Install JQ on ubuntu
-          when: ansible_distribution == "Ubuntu"
-          apt:
-            name: jq
-            state: present
+    - name: Install utilities on arch
+      when: ansible_distribution == "Archlinux"
+      become: yes
+      become_user: root
+      with_items:
+        - "{{ tools }}"
+      pacman:
+        name: "{{ item }}"
+        state: present
 
-    - name: Install curl
-      block:
-        - name: Install curl arch
-          when: ansible_distribution == "Archlinux"
-          pacman:
-            name: curl
-            state: present
-        - name: Install curl on ubuntu
-          when: ansible_distribution == "Ubuntu"
-          apt:
-            name: curl
-            state: present
-
-
-
-
+    - name: Install utilities on ubuntu
+      when: ansible_distribution == "Ubuntu"
+      become: yes
+      become_user: root
+      with_items:
+        - "{{ tools }}"
+      apt:
+        name: "{{ item }}"
+        state: present

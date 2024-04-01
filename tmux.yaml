@@ -1,0 +1,10 @@
+- name: TMUX installation and configuration
+  block:
+    - name: Install tmux
+      block:
+        - name: Install tmux on arch
+          become: yes
+          become_user: root
+          pacman:
+            name: tmux
+            state: present

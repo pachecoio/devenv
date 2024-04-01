@@ -7,3 +7,6 @@
     - include_tasks: terminal.yaml
       tags:
         - terminal
+    - include_tasks: tmux.yaml
+      tags:
+        - tmux
