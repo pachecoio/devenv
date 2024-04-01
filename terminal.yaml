@@ -1,0 +1,43 @@
+- name: Terminal config
+  tags:
+    - terminal
+  block:
+    - name: Install zsh
+      block:
+        - name: Install zsh on arch
+          when: ansible_distribution == "Archlinux"
+          become: yes
+          become_user: root
+          pacman:
+            name: zsh
+            state: present
+    - name: Change default shell to ZSH
+      become: yes
+      become_user: root
+      shell: >
+        chsh -s `which zsh`
+    - name: Ensure zshrc file exists
+      file:
+        path: ~/.zshrc
+        state: touch
+    - name: Install ohmyzsh
+      block:
+        - name: Cleanup existing ohmyzsh installation
+          shell: >
+            rm -rf ~/.oh-my-zsh
+        - name: Run ohmyzsh installation script
+          shell: >
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - name: Install zsh suggestions
+      block:
+        - name: Clone zsh autosuggestions repo
+          git:
+            repo: "https://github.com/zsh-users/zsh-autosuggestions"
+            dest: ~/.zsh/zsh-autosuggestions
+        - name: Source zsh autosuggestions
+          lineinfile:
+            path: ~/.zshrc
+            line: "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+
+    

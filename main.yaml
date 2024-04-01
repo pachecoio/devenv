@@ -1,0 +1,9 @@
+- name: Next Gen Dev environment
+  hosts: localhost
+  tasks:
+    - include_tasks: utils.yaml
+      tags:
+        - utils
+    - include_tasks: terminal.yaml
+      tags:
+        - terminal

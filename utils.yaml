@@ -1,0 +1,34 @@
+- name: Install JQ
+  tags:
+    - utils
+    - jq
+  block:
+    - name: Install JQ
+      block:
+        - name: Install JQ on arch
+          when: ansible_distribution == "Archlinux"
+          pacman:
+            name: jq
+            state: present
+        - name: Install JQ on ubuntu
+          when: ansible_distribution == "Ubuntu"
+          apt:
+            name: jq
+            state: present
+
+    - name: Install curl
+      block:
+        - name: Install curl arch
+          when: ansible_distribution == "Archlinux"
+          pacman:
+            name: curl
+            state: present
+        - name: Install curl on ubuntu
+          when: ansible_distribution == "Ubuntu"
+          apt:
+            name: curl
+            state: present
+
+
+
+
