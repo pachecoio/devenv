@@ -44,6 +44,20 @@
         line: 'ZSH_THEME="fino"'
         regexp: '^ZSH_THEME='
 
+    - name: Install Kitty
+      block:
+        - name: Install kitty arch
+          become: yes
+          become_user: root
+          pacman:
+            name: kitty
+            state: present
+
+    - name: Set kitty font family
+      lineinfile:
+        path: ~/.config/kitty/kitty.conf
+        line: "font_family:  NotoSansMono Nerd Font"
+        regexp: "^font_family"
 
 
 

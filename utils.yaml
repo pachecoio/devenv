@@ -7,6 +7,9 @@
       - jq
       - curl
       - stow
+      - fzf
+      - ripgrep
+      - zoxide
   block:
     - name: Install utilities on arch
       when: ansible_distribution == "Archlinux"
@@ -27,3 +30,13 @@
       apt:
         name: "{{ item }}"
         state: present
+
+    - name: Configure zoxide
+      block:
+        - name: Add zoxide to path zsh
+          lineinfile:
+            path: ~/.zshrc
+            line: eval "$(zoxide init zsh --cmd cd)"
+
+
+

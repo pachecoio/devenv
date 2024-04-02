@@ -1,0 +1,32 @@
+- name: Install fonts arch
+  tags:
+    - fonts
+  block:
+    - name: Ensure fonts folder exist
+      ansible.builtin.file:
+        path: ~/.fonts
+        state: directory
+        mode: '0755'
+    - name: Check if Ubuntu nerd font exists
+      ansible.builtin.stat:
+        path: ~/.fonts/UbuntuMono-Regular.ttf
+      register: ubuntu_nerd_font
+    - name: Download Ubuntu nerd font
+      when: ubuntu_nerd_font.stat.exists == False
+      ansible.builtin.unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Ubuntu.zip
+        dest: ~/.fonts
+        remote_src: yes
+    - name: Check if Noto nerd font exists
+      ansible.builtin.stat:
+        path: ~/.fonts/NotoMono-Regular.ttf
+      register: noto_nerd_font
+    - name: Download Noto nerd font
+      when: noto_nerd_font.stat.exists == False
+      ansible.builtin.unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Noto.zip
+        dest: ~/.fonts
+        remote_src: yes
+    - name: Install downloaded fonts
+      ansible.builtin.shell: >
+        fc-cache -fv
