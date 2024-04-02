@@ -13,7 +13,6 @@
             state: present
     - name: Change default shell to ZSH
       become: yes
-      become_user: root
       shell: >
         chsh -s `which zsh`
     - name: Ensure zshrc file exists
