@@ -13,3 +13,6 @@
     - include_tasks: fonts.yaml
       tags:
         - fonts
+    - include_tasks: neovim.yaml
+      tags:
+        - neovim

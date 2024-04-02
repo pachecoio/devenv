@@ -1,0 +1,21 @@
+- name: Install and configure neovim
+  tags:
+    - neovim
+  block:
+    - name: Install neovim
+      block:
+        - name: Install neovim on arch
+          become: yes
+          become_user: root
+          pacman:
+            name: neovim
+            state: present
+    - name: Configure custom neovim
+      block:
+        - name: Ensure nvim folder exits
+          file:
+            path: ~/.config/nvim
+            state: directory
+        - name: Stow nvim files
+          shell: >
+            stow -t ~/.config/nvim/ -d dotfiles neovim

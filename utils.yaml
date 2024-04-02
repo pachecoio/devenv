@@ -10,6 +10,9 @@
       - fzf
       - ripgrep
       - zoxide
+      - make
+      - unzip
+      - gcc
   block:
     - name: Install utilities on arch
       when: ansible_distribution == "Archlinux"
