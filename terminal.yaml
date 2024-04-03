@@ -56,7 +56,7 @@
     - name: Set kitty font family
       lineinfile:
         path: ~/.config/kitty/kitty.conf
-        line: "font_family: FantasqueSansM Nerd Font"
+        line: "font_family: NotoSansM Nerd Font Mono"
         regexp: "^font_family"
 
     - name: Configure zoxide

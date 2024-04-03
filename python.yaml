@@ -1,0 +1,112 @@
+- name: Install and configure python
+  tags:
+    - python
+  vars:
+    - packages:
+        - make
+        - build-essential
+        - libssl-dev
+        - zlib1g-dev
+        - libbz2-dev
+        - libreadline-dev
+        - libsqlite3-dev
+        - wget
+        - curl
+        - llvm
+        - libncurses5-dev
+        - libncursesw5-dev
+        - xz-utils
+        - tk-dev
+        - libffi-dev
+        - liblzma-dev
+  block:
+    - name: Install python on macos
+      when: ansible_os_family == "Darwin"
+      tags:
+        - macos
+      block:
+        - name: Install Pyenv
+          ansible.builtin.homebrew:
+            name: pyenv
+            state: present
+            update_homebrew: yes
+        - name: Configure pyenv
+          block:
+            - name: Create pyenv dir
+              ansible.builtin.file:
+                path: "{{ lookup('env', 'HOME') }}/.pyenv"
+                state: directory
+                mode: '0755'
+            - name: Add pyenv to path
+              lineinfile:
+                path: "{{ lookup('env', 'HOME') }}/.zshrc"
+                line: 'export PYENV_ROOT="$HOME/.pyenv"'
+            - name: Add pyenv root to path
+              lineinfile:
+                path: "{{ lookup('env', 'HOME') }}/.zshrc"
+                line: '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"'
+            - name: Add pyenv initializer
+              lineinfile:
+                path: "{{ lookup('env', 'HOME') }}/.zshrc"
+                line: 'eval "$(pyenv init -)"'
+
+    - name: Install python dependencies on linux
+      become: yes
+      become_user: root
+      block:
+        - name: install dependencies for ubuntu
+          when: ansible_distribution == "Ubuntu"
+          apt:
+            name: "{{ item }}"
+            state: present
+          with_items:
+            - "{{ packages }}"
+        # - name: install dependencies for arch
+        #   when: ansible_distribution == "Archlinux"
+        #   pacman:
+        #     name: "{{ item }}"
+        #     state: present
+        #   with_items:
+        #     - "{{ packages }}"
+
+    - name: Install python on ubuntu
+      block:
+        - name: Remove pyenv dir
+          file:
+            path: "{{ lookup('env', 'HOME') }}/.pyenv"
+            state: absent
+        - name: install pyenv
+          shell: |
+            curl https://pyenv.run | bash
+        - name: Add pyenv to path
+          lineinfile:
+            path: "{{ lookup('env', 'HOME') }}/.zshrc"
+            line: 'export PYENV_ROOT="$HOME/.pyenv"'
+        - name: Add pyenv root to path
+          lineinfile:
+            path: "{{ lookup('env', 'HOME') }}/.zshrc"
+            line: '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"'
+        - name: Add pyenv initializer
+          lineinfile:
+            path: "{{ lookup('env', 'HOME') }}/.zshrc"
+            line: 'eval "$(pyenv init -)"'
+        - name: Install python 3.12.0
+          shell: |
+            pyenv install 3.12.0
+        - name: Set python 3.12.0 as global
+          shell: |
+            pyenv global 3.12.0
+        - name: Install poetry
+          shell: |
+            curl -sSL https://install.python-poetry.org | python3 -
+        - name: Add poetry to path
+          lineinfile:
+            path: "{{ lookup('env', 'HOME') }}/.zshrc"
+            line: 'export PATH="$HOME/.local/bin:$PATH"'
+        - name: Ensure zsh custom plugins directory exists
+          file:
+            path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/plugins/poetry"
+            state: directory
+        - name: Add poetry completions
+          shell: |
+            poetry completions zsh > {{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/plugins/poetry/_poetry

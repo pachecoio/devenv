@@ -25,3 +25,12 @@
     - include_tasks: nix.yaml
       tags:
         - nix
+    - include_tasks: i3.yaml
+      tags:
+        - i3
+    - include_tasks: golang.yaml
+      tags:
+        - go
+    - include_tasks: python.yaml
+      tags:
+        - python

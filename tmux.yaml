@@ -1,4 +1,6 @@
 - name: TMUX installation and configuration
+  tags:
+    - tmux
   block:
     - name: Install tmux
       block:
@@ -8,3 +10,25 @@
           pacman:
             name: tmux
             state: present
+
+    - name: Setup TMUX config
+      block:
+        - name: Install tmux package manager
+          ansible.builtin.git:
+            repo: "https://github.com/tmux-plugins/tpm"
+            dest: "~/.tmux/plugins/tpm"
+    - name: Copy TMUX dotfiles
+      ansible.builtin.shell: >
+        stow -t ~/ -d dotfiles tmux
+
+    - name: Make zsh start tmux by default
+      blockinfile:
+        path: ~/.zshrc
+        block: |
+          if [ -z "$TMUX" ]; then
+            if tmux has-session -t main 2>/dev/null; then
+              tmux attach-session -t main
+            else
+              tmux new-session -s main
+            fi
+          fi
