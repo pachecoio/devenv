@@ -22,3 +22,6 @@
     - include_tasks: node.yaml
       tags:
         - node
+    - include_tasks: nix.yaml
+      tags:
+        - nix
