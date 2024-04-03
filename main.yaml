@@ -16,3 +16,6 @@
     - include_tasks: neovim.yaml
       tags:
         - neovim
+    - include_tasks: node.yaml
+      tags:
+        - node

@@ -13,6 +13,7 @@
       - make
       - unzip
       - gcc
+      - wget
   block:
     - name: Install utilities on arch
       when: ansible_distribution == "Archlinux"
@@ -36,10 +37,15 @@
 
     - name: Configure zoxide
       block:
-        - name: Add zoxide to path zsh
+        - name: add zoxide to path
+          tags:
+            - zoxide
+          lineinfile:
+            path: ~/.zshrc
+            line: eval "$(zoxide init zsh)"
+        - name: Initialize zoxide
+          tags:
+            - zoxide
           lineinfile:
             path: ~/.zshrc
             line: eval "$(zoxide init zsh --cmd cd)"
-
-
-
