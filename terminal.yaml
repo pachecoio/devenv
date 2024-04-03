@@ -56,10 +56,15 @@
     - name: Set kitty font family
       lineinfile:
         path: ~/.config/kitty/kitty.conf
-        line: "font_family: NotoSansM Nerd Font Mono"
+        line: "font_family: FantasqueSansM Nerd Font"
         regexp: "^font_family"
 
+    - name: Configure zoxide
+      block:
+        - name: add zoxide to path
+          tags:
+            - zoxide
+          lineinfile:
+            path: ~/.zshrc
+            line: eval "$(zoxide init zsh)"
 
-
-
-    

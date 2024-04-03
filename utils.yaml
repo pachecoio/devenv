@@ -1,7 +1,6 @@
 - name: Install JQ
   tags:
     - utils
-    - jq
   vars:
     tools:
       - jq
@@ -35,17 +34,3 @@
         name: "{{ item }}"
         state: present
 
-    - name: Configure zoxide
-      block:
-        - name: add zoxide to path
-          tags:
-            - zoxide
-          lineinfile:
-            path: ~/.zshrc
-            line: eval "$(zoxide init zsh)"
-        - name: Initialize zoxide
-          tags:
-            - zoxide
-          lineinfile:
-            path: ~/.zshrc
-            line: eval "$(zoxide init zsh --cmd cd)"
