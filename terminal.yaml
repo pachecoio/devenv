@@ -41,7 +41,7 @@
     - name: Customize theme
       lineinfile:
         path: ~/.zshrc
-        line: 'ZSH_THEME="fino"'
+        line: 'ZSH_THEME="avit"'
         regexp: '^ZSH_THEME='
 
     - name: Install Kitty

@@ -1,0 +1,20 @@
+- name: Install and config alacritty
+  tags:
+    - alacritty
+  block:
+    - name: Install alacritty on arch
+      become: yes
+      become_user: root
+      pacman:
+        name: alacritty
+        state: present
+
+    - name: Ensure alacritty dir exists
+      file:
+        path: ~/.config/alacritty
+        state: directory
+
+    - name: Stow alacritty config
+      shell: >
+        stow -t ~/.config/alacritty/ -d dotfiles alacritty
+

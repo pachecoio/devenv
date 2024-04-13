@@ -34,3 +34,6 @@
     # - include_tasks: python.yaml
     #   tags:
     #     - python
+    - include_tasks: alacritty.yaml
+      tags:
+        - alacritty
