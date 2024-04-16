@@ -51,5 +51,5 @@
             - zoxide
           lineinfile:
             path: ~/.zshrc
-            line: eval "$(zoxide init zsh)"
+            line: eval "$(zoxide init zsh --cmd cd)"
 
