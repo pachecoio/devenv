@@ -44,26 +44,6 @@
         line: 'ZSH_THEME="avit"'
         regexp: '^ZSH_THEME='
 
-    - name: Install Kitty
-      block:
-        - name: Install kitty arch
-          become: yes
-          become_user: root
-          pacman:
-            name: kitty
-            state: present
-
-    - name: Ensure kitty file exists
-      file:
-        path: ~/.config/kitty/kitty.conf
-        state: touch
-
-    - name: Set kitty font family
-      lineinfile:
-        path: ~/.config/kitty/kitty.conf
-        line: "font_family: NotoSansM Nerd Font Mono"
-        regexp: "^font_family"
-
     - name: Configure zoxide
       block:
         - name: add zoxide to path
