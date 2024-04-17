@@ -8,6 +8,11 @@
       args:
         creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
+    - name: Set nvm dir
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        line: "export NVM_DIR=~/.nvm"
+
     - name: Add nvm to zsh path
       lineinfile:
         path: "{{ ansible_env.HOME }}/.zshrc"
@@ -19,3 +24,4 @@
         creates: "{{ ansible_env.HOME }}/.nvm/versions/node"
         chdir: "{{ ansible_env.HOME }}"
         executable: /usr/bin/bash
+
