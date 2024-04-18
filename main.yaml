@@ -37,3 +37,6 @@
     - include_tasks: alacritty.yaml
       tags:
         - alacritty
+    - include_tasks: docker.yaml
+      tags:
+        - docker
