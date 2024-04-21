@@ -40,3 +40,6 @@
     - include_tasks: docker.yaml
       tags:
         - docker
+    - include_tasks: rust.yaml
+      tags:
+        - rust
