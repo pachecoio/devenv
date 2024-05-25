@@ -6,10 +6,10 @@ program = "/usr/bin/zsh"
 style = "Beam"
 
 [font]
-size = 16.0
+size = 18.0
 
 [font.normal]
-family = "NotoSansM Nerd Font Mono"
+family = "FantasqueSansM Nerd Font"
 
 [window]
 startup_mode = "Maximized"
