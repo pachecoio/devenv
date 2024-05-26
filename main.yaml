@@ -43,3 +43,6 @@
     - include_tasks: rust.yaml
       tags:
         - rust
+    - include_tasks: git.yaml
+      tags:
+        - git
