@@ -46,3 +46,6 @@
     - include_tasks: git.yaml
       tags:
         - git
+    - include_tasks: bluetooth.yaml
+      tags:
+        - bluetooth

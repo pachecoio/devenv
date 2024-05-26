@@ -1,0 +1,33 @@
+- name: Setup bluetooth config arch
+  tags:
+    - bluetooth
+  when: ansible_distribution == "Archlinux"
+  block:
+    - name: Install necessary packages
+      become: yes
+      become_user: root
+      with_items:
+        - bluez
+        - bluez-utils
+        - blueman
+      pacman:
+        name: "{{ item }}"
+        state: present
+    - name: Auto enable bluetooth
+      become: yes
+      become_user: root
+      lineinfile:
+        path: /etc/bluetooth/main.conf
+        line: 'AutoEnable=true'
+        regexp: '^AutoEnable='
+    - name: Start bluetooth service
+      become: yes
+      become_user: root
+      shell: |
+        systemctl start bluetooth.service
+    - name: Enable bluetooth service
+      become: yes
+      become_user: root
+      shell: |
+        systemctl enable bluetooth.service
+
