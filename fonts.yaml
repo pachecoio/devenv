@@ -9,7 +9,8 @@
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Noto.zip
       - name: FantasqueSansMono
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FantasqueSansMono.zip
-
+      - name: FiraCode
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
 
   block:
     - name: Ensure fonts folder exist
