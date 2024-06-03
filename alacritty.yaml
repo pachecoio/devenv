@@ -3,9 +3,16 @@
     - alacritty
   block:
     - name: Install alacritty on arch
+      when: ansible_distribution == "Archlinux"
       become: yes
       become_user: root
       pacman:
+        name: alacritty
+        state: present
+
+    - name: Install alacritty on macos
+      when: ansible_os_family == "Darwin"
+      homebrew:
         name: alacritty
         state: present
 

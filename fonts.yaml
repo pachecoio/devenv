@@ -1,10 +1,8 @@
-- name: Install fonts arch
+- name: Install fonts
   tags:
     - fonts
   vars:
     - fonts:
-      - name: Ubuntu
-        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Ubuntu.zip
       - name: Noto
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Noto.zip
       - name: FantasqueSansMono

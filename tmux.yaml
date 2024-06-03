@@ -5,9 +5,15 @@
     - name: Install tmux
       block:
         - name: Install tmux on arch
+          when: ansible_distribution == "Archlinux"
           become: yes
           become_user: root
           pacman:
+            name: tmux
+            state: present
+        - name: Install tmux macos
+          when: ansible_distribution == 'Darwin'
+          ansible.builtin.homebrew:
             name: tmux
             state: present
 

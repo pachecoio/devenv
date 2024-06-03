@@ -24,6 +24,14 @@
         name: "{{ item }}"
         state: present
 
+    - name: Install utilities on macos
+      when: ansible_os_family == "Darwin"
+      with_items:
+        - "{{ tools }}"
+      homebrew:
+        name: "{{ item }}"
+        state: present
+
     - name: Install utilities on ubuntu
       when: ansible_distribution == "Ubuntu"
       become: yes

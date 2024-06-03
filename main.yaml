@@ -25,9 +25,6 @@
     - include_tasks: nix.yaml
       tags:
         - nix
-    - include_tasks: i3.yaml
-      tags:
-        - i3
     - include_tasks: golang.yaml
       tags:
         - go
@@ -37,6 +34,9 @@
     - include_tasks: alacritty.yaml
       tags:
         - alacritty
+    - include_tasks: kitty.yaml
+      tags:
+        - kitty
     - include_tasks: docker.yaml
       tags:
         - docker

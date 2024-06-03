@@ -5,9 +5,15 @@
     - name: Install neovim
       block:
         - name: Install neovim on arch
+          when: ansible_distribution == "Archlinux"
           become: yes
           become_user: root
           pacman:
+            name: neovim
+            state: present
+        - name: Install neovim on macos
+          when: ansible_os_family == "Darwin"
+          homebrew:
             name: neovim
             state: present
     - name: Configure custom neovim

@@ -1,4 +1,5 @@
-- name: Install docker
+- name: Install docker - Arch
+  when: ansible_distribution == "Archlinux"
   tags:
     - docker
   vars:

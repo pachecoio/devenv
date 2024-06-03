@@ -11,3 +11,7 @@
     - name: set default name
       shell: |
         git config --global user.name "Thiago Pacheco"
+    - name: set default branch
+      shell: |
+        git config --global init.defaultBranch main
+

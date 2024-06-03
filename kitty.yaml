@@ -1,0 +1,27 @@
+- name: Install and config kitty
+  tags:
+    - kitty
+  block:
+    - name: Install kitty on arch
+      when: ansible_distribution == "Archlinux"
+      become: yes
+      become_user: root
+      pacman:
+        name: kitty
+        state: present
+
+    - name: Install kitty on macos
+      when: ansible_os_family == "Darwin"
+      homebrew:
+        name: kitty
+        state: present
+
+    - name: Ensure kitty dir exists
+      file:
+        path: ~/.config/kitty
+        state: directory
+
+    - name: Stow kitty config
+      shell: >
+        stow -t ~/.config/kitty/ -d dotfiles kitty
+
