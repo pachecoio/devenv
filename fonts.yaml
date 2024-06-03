@@ -9,6 +9,8 @@
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FantasqueSansMono.zip
       - name: FiraCode
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
+      - name: Symbols
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.zip
 
   block:
     - name: Ensure fonts folder exist

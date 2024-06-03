@@ -37,6 +37,9 @@
     - include_tasks: kitty.yaml
       tags:
         - kitty
+    - include_tasks: wezterm.yaml
+      tags:
+        - wezterm
     - include_tasks: docker.yaml
       tags:
         - docker

@@ -1,0 +1,22 @@
+- name: Install and config wezterm
+  tags:
+    - wezterm
+  block:
+    - name: Install wezterm on arch
+      when: ansible_distribution == "Archlinux"
+      become: yes
+      become_user: root
+      pacman:
+        name: wezterm
+        state: present
+
+    - name: Install wezterm on macos
+      when: ansible_os_family == "Darwin"
+      homebrew:
+        name: wezterm
+        state: present
+
+    - name: Stow wezterm config
+      shell: >
+        stow -t ~/ -d dotfiles wezterm
+
