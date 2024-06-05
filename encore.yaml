@@ -1,0 +1,18 @@
+- name: Install encore go
+  tags:
+    - encore
+  block:
+    - name: Download and install encore
+      ansible.builtin.shell: >
+        curl -L https://encore.dev/install.sh | bash
+    - name: Add encore to path
+      block:
+        - name: Add encore variable
+          lineinfile:
+            path: ~/.zshrc
+            line: export ENCORE_INSTALL="~/.encore"
+        - name: Add encore to path
+          lineinfile:
+            path: ~/.zshrc
+            line: export PATH="$ENCORE_INSTALL/bin:$PATH"
+
