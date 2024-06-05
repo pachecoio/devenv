@@ -55,4 +55,7 @@
     - include_tasks: encore.yaml
       tags:
         - encore
+    - include_tasks: emacs.yaml
+      tags:
+        - emacs
 
