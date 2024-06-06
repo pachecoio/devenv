@@ -3,6 +3,7 @@
     - encore
   block:
     - name: Download and install encore
+      ignore_errors: yes
       ansible.builtin.shell: >
         curl -L https://encore.dev/install.sh | bash
     - name: Add encore to path
