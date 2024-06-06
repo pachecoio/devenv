@@ -16,6 +16,23 @@
           homebrew:
             name: neovim
             state: present
+        - name: Install neovim ubuntu
+          block:
+            - name: Download and untar
+              become: yes
+              become_user: root
+              shell: |
+                curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+                rm -rf /opt/nvim
+                tar -C /opt -xzf nvim-linux64.tar.gz
+            - name: Export nvim path zsh
+              lineinfile:
+                path: ~/.zshrc
+                line: export PATH="$PATH:/opt/nvim-linux64/bin"
+            - name: Export nvim path bash
+              lineinfile:
+                path: ~/.bashrc
+                line: export PATH="$PATH:/opt/nvim-linux64/bin"
     - name: Configure custom neovim
       block:
         - name: Ensure nvim folder exits
@@ -24,4 +41,4 @@
             state: directory
         - name: Stow nvim files
           shell: >
-            stow -t ~/.config/nvim/ -d dotfiles neovim
+            stow -t ~/.config/nvim/ -d dotfiles nvim

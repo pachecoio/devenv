@@ -9,7 +9,6 @@
       pacman:
         name: wezterm
         state: present
-
     - name: Install wezterm on macos
       when: ansible_os_family == "Darwin"
       homebrew:

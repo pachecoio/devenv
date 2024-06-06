@@ -10,6 +10,13 @@
         name: kitty
         state: present
 
+    - name: Install kitty on Ubuntu
+      when: ansible_distribution == "Ubuntu"
+      become: yes
+      become_user: root
+      apt:
+        name: kitty
+        state: present
     - name: Install kitty on macos
       when: ansible_os_family == "Darwin"
       homebrew:
