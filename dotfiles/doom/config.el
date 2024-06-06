@@ -32,7 +32,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-tokyo-night)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -107,19 +107,12 @@
       :desc "Find file in project"
       "s f" #'counsel-projectile-find-file)
 
-(defun has-window-open-bottom ()
-  "Check if there is a window open at the bottom of the frame."
-  (let ((window (window-in-direction 'below)))
-    (when window
-      (window-buffer window))))
-
-(defun close-window-bottom ()
-  "Close the window at the bottom of the frame."
-  (let ((window (window-in-direction 'below)))
-    (when window
-      (delete-window window))))
-
-;; close bottom window if it exists
+;; Toggle neotree in current project
 (map! :leader
-      :desc "Close bottom window"
-      "q j" #'close-window-bottom)
+      :desc "Open neotree"
+      "e" #'treemacs)
+
+;; Grep search in project
+(map! :leader
+      :desc "Grep search in project"
+      "s g" #'counsel-projectile-rg)

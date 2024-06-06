@@ -5,6 +5,7 @@ config.color_scheme = "tokyonight_night"
 
 config.font = wezterm.font("FiraCode Nerd Font")
 config.font_size = 16.0
+config.cell_width = 1.05
 
 config.window_padding = {
 	left = 0,
