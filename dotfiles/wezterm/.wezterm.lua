@@ -4,8 +4,8 @@ config.color_scheme = "tokyonight_night"
 -- config.color_scheme = "Batman"
 
 config.font = wezterm.font("FiraCode Nerd Font")
-config.font_size = 16.0
-config.cell_width = 1.05
+config.font_size = 20.0
+-- config.cell_width = 1.05
 
 config.window_padding = {
 	left = 0,
@@ -13,6 +13,8 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+
+config.hide_tab_bar_if_only_one_tab = true
 
 -- and finally, return the configuration to wezterm
 return config
