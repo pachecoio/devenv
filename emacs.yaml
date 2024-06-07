@@ -3,12 +3,14 @@
     - emacs
   block:
     - name: Install emacs arch
+      when: ansible_distribution == "Archlinux"
       become: yes
       become_user: root
       pacman:
         name: emacs
         state: present
     - name: Install doom emacs
+      when: ansible_distribution == "Archlinux"
       block:
         - name: Clone doom repo
           git:

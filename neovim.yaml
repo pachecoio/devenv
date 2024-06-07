@@ -30,6 +30,7 @@
                 path: ~/.zshrc
                 line: export PATH="$PATH:/opt/nvim-linux64/bin"
             - name: Export nvim path bash
+              ignore_errors: yes
               lineinfile:
                 path: ~/.bashrc
                 line: export PATH="$PATH:/opt/nvim-linux64/bin"
