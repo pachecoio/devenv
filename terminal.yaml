@@ -49,7 +49,9 @@
         - name: add zoxide to path
           tags:
             - zoxide
-          lineinfile:
+          blockinfile:
             path: ~/.zshrc
-            line: eval "$(zoxide init zsh --cmd cd)"
+            block: |
+              eval "$(zoxide init zsh)"
+              alias cd="zoxide cd"
 
