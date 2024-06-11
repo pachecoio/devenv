@@ -36,3 +36,27 @@
         name: "{{ remote_user }}"
         group: "{{ docker_group }}"
         append: yes
+
+- name: Install docker ubuntu
+  when: ansible_distribution == "Ubuntu"
+  tags:
+    - docker
+  become: yes
+  become_user: root
+  block:
+    - name: Check if docker is already installed
+      ansible.builtin.stat:
+        path: /usr/bin/docker
+      register: docker_installed
+    - name: Docker already installed macos
+      ansible.builtin.stat:
+        path: /usr/local/bin/docker
+      register: docker_installed_macos
+    - name: install with convenience script
+      when: docker_installed.stat.exists == False and docker_installed_macos.stat.exists == False
+      shell: >
+        curl -fsSL https://get.docker.com | sh
+    - name: Add docker compose alias
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        line: "alias docker-compose='docker compose'"
