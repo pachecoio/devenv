@@ -46,12 +46,11 @@
 
     - name: Configure zoxide
       block:
-        - name: add zoxide to path
-          tags:
-            - zoxide
-          blockinfile:
+        - name: add zoxide init to path
+          lineinfile:
             path: ~/.zshrc
-            block: |
-              eval "$(zoxide init zsh)"
-              alias cd="zoxide cd"
-
+            line: eval "$(zoxide init zsh)"
+        - name: add zoxide alias to path
+          lineinfile:
+            path: ~/.zshrc
+            line: alias cd="z"
