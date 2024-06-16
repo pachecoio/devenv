@@ -58,4 +58,7 @@
     # - include_tasks: emacs.yaml
     #   tags:
     #     - emacs
+    - include_tasks: zed.yaml
+      tags:
+        - zed
 

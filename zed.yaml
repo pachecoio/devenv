@@ -1,0 +1,9 @@
+- name: Zed config
+  tags:
+    - zed
+  block:
+    - name: Stow zed config files
+      shell: |
+        stow --adopt -t ~/ -d dotfiles zed
+
+
