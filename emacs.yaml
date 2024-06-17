@@ -38,4 +38,3 @@
         - name: Stow doom emacs config files
           shell: |
             stow -t ~/.config/doom -d dotfiles doom
-
