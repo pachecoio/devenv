@@ -22,9 +22,6 @@
     - include_tasks: node.yaml
       tags:
         - node
-    # - include_tasks: nix.yaml
-    #   tags:
-    #     - nix
     - include_tasks: golang.yaml
       tags:
         - go
@@ -34,9 +31,6 @@
     # - include_tasks: alacritty.yaml
     #   tags:
     #     - alacritty
-    # - include_tasks: kitty.yaml
-    #   tags:
-    #     - kitty
     - include_tasks: wezterm.yaml
       tags:
         - wezterm
@@ -52,12 +46,6 @@
     - include_tasks: bluetooth.yaml
       tags:
         - bluetooth
-    # - include_tasks: encore.yaml
-    #   tags:
-    #     - encore
-    # - include_tasks: emacs.yaml
-    #   tags:
-    #     - emacs
     - include_tasks: zed.yaml
       tags:
         - zed
