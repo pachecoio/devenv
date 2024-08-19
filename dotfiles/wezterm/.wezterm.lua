@@ -4,8 +4,8 @@ config.color_scheme = "tokyonight_night"
 -- config.color_scheme = "Batman"
 
 config.font = wezterm.font("FiraCode Nerd Font")
-config.font_size = 20.0
-config.line_height = 1.2
+config.font_size = 16.0
+-- config.line_height = 1.2
 -- config.cell_width = 0.95
 
 config.window_padding = {
