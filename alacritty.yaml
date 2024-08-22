@@ -25,3 +25,10 @@
       shell: >
         stow -t ~/.config/alacritty/ -d dotfiles alacritty
 
+    - name: Update zsh path config for macos
+      when: ansible_os_family == "Darwin"
+      lineinfile:
+        path: ~/.config/alacritty/alacritty.toml
+        line: 'program = "/bin/zsh"'
+        regexp: '^program ='
+
