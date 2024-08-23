@@ -32,3 +32,10 @@
         line: 'program = "/bin/zsh"'
         regexp: '^program ='
 
+    - name: Update zsh path config for linux
+      when: ansible_distribution == "Archlinux"
+      lineinfile:
+        path: ~/.config/alacritty/alacritty.toml
+        line: 'program = "/usr/bin/zsh"'
+        regexp: '^program ='
+
