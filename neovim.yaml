@@ -5,7 +5,7 @@
     - name: Install neovim
       block:
         - name: Install neovim on arch
-          when: ansible_distribution == "Archlinux"
+          when: ansible_distribution == "Archlinux" or ansible_distribution == "Manjaro"
           become: yes
           become_user: root
           pacman:
@@ -17,6 +17,7 @@
             name: neovim
             state: present
         - name: Install neovim ubuntu
+          when : ansible_distribution == "Ubuntu"
           block:
             - name: Download and untar
               become: yes
