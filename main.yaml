@@ -49,7 +49,7 @@
     - include_tasks: bluetooth.yaml
       tags:
         - bluetooth
-    - include_tasks: zed.yaml
-      tags:
-        - zed
+    # - include_tasks: zed.yaml
+    #   tags:
+    #     - zed
 
