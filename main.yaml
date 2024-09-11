@@ -25,9 +25,9 @@
     - include_tasks: golang.yaml
       tags:
         - go
-    - include_tasks: python.yaml
-      tags:
-        - python
+    # - include_tasks: python.yaml
+    #   tags:
+    #     - python
     - include_tasks: alacritty.yaml
       tags:
         - alacritty
