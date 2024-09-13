@@ -1,6 +1,6 @@
 [shell]
 args = ['--login']
-program = "/bin/zsh"
+program = "/usr/bin/zsh"
 
 [cursor]
 style = "Beam"

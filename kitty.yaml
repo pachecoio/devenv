@@ -28,7 +28,12 @@
         path: ~/.config/kitty
         state: directory
 
+    - name: Remove old kitty config
+      command: rm -rf ~/.config/kitty
+    - name: Ensure kitty config dir exists
+      file:
+        path: ~/.config/kitty
+        state: directory
     - name: Stow kitty config
-      shell: >
-        stow -t ~/.config/kitty/ -d dotfiles kitty
+      command: stow -t ~/.config/kitty/ -d dotfiles kitty
 
