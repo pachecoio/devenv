@@ -3,29 +3,47 @@
     - fonts
   vars:
     - fonts:
-      - name: Noto
-        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Noto.zip
-      - name: FantasqueSansMono
-        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/FantasqueSansMono.zip
       - name: FiraCode
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/FiraCode.zip
       - name: Symbols
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.zip
 
   block:
-    - name: Ensure fonts folder exist
-      ansible.builtin.file:
-        path: ~/.fonts
-        state: directory
-        mode: '0755'
+    - name: Install fonts for linux and macos
+      when: ansible_distribution != "Archlinux"
+      block:
+        - name: Ensure fonts folder exist
+          ansible.builtin.file:
+            path: ~/.fonts
+            state: directory
+            mode: '0755'
 
-    - name: Download font
-      with_items: "{{ fonts }}"
-      ansible.builtin.unarchive:
-        src: "{{ item.url }}"
-        dest: ~/.fonts
-        remote_src: yes
+        - name: Download font
+          with_items: "{{ fonts }}"
+          ansible.builtin.unarchive:
+            src: "{{ item.url }}"
+            dest: ~/.fonts
+            remote_src: yes
 
-    - name: Install downloaded fonts
-      ansible.builtin.shell: >
-        fc-cache -fv
+        - name: Install downloaded fonts
+          ansible.builtin.shell: >
+            fc-cache -fv
+
+    - name: Install nerd fonts arch
+      when: ansible_distribution == "Archlinux"
+      vars:
+        - nerd_fonts:
+          - name: FiraCode
+            package: ttf-firacode-nerd
+          - name: Symbols
+            package: ttf-nerd-fonts-symbols
+          - name: Noto fonts emoji
+            package: noto-fonts-emoji
+      block:
+        - name: "Install nerd font {{ item.name }}"
+          become: yes
+          become_user: root
+          with_items: "{{ nerd_fonts }}"
+          pacman:
+            name: "{{ item.package }}"
+            state: present
