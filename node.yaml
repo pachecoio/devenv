@@ -23,5 +23,5 @@
       args:
         creates: "{{ ansible_env.HOME }}/.nvm/versions/node"
         chdir: "{{ ansible_env.HOME }}"
-        executable: /usr/bin/bash
+        executable: /bin/bash
 
