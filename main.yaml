@@ -13,6 +13,9 @@
     - include_tasks: tmux.yaml
       tags:
         - tmux
+    - include_tasks: zellij.yaml
+      tags:
+        - zellij
     - include_tasks: fonts.yaml
       tags:
         - fonts

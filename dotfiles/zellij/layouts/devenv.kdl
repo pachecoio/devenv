@@ -1,0 +1,9 @@
+layout {
+    tab{
+        pane {
+            borderless true
+            cwd "~/dev/config/devenv/"
+            command "nvim"
+        }
+    }
+}

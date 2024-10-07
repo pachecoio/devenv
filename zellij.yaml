@@ -1,0 +1,13 @@
+- name: Install and configure zellij
+  tags: zellij
+  block:
+    - name: Install zellij macos
+      homebrew:
+        name: zellij
+        state: present
+    - name: Create zellij configuration directory
+      file:
+        path: "{{ ansible_env.HOME }}/.config/zellij"
+        state: directory
+    - name: Stow zellij configuration
+      command: stow -t "{{ ansible_env.HOME }}/.config/zellij" -d dotfiles zellij
