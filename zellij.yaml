@@ -11,3 +11,7 @@
         state: directory
     - name: Stow zellij configuration
       command: stow -t "{{ ansible_env.HOME }}/.config/zellij" -d dotfiles zellij
+    - name: Include zellij script alias to zsh
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        line: "alias zj='~/.config/zellij/manager.sh'"
