@@ -17,7 +17,15 @@ select_layout ()
 
         project_name=$(echo "${ZJ_LAYOUT}" | cut -f 1 -d '.')
 
-        zellij list-sessions | grep "${project_name}" && zellij --session "${project_name}" ||
+        #attach to session if it exists
+        session_exists=$(zellij list-sessions | grep "${project_name}" || true)
+
+        if [[ -n "${session_exists}" ]];then
+            zellij attach "${project_name}"
+            exit
+        fi
+
+        # open project
         zellij --layout "${ZJ_LAYOUT_DIR}/${ZJ_LAYOUT}" --session "${project_name}"
     fi
 }
