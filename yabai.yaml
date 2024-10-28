@@ -1,0 +1,38 @@
+- name: Install yabai macos
+  tags: yabai
+  when: ansible_os_family == "Darwin"
+  block:
+    - name: Install yabai
+      shell:
+        cmd: |
+          brew install koekeishiya/formulae/yabai
+          yabai --start-service
+    - name: Stow yabai config files 
+      shell: |
+        stow -t ~/ -d dotfiles yabai
+
+    - name: Current user
+      shell: whoami
+      register: current_user
+    - name: Add configuration entry to sudoers
+      become: yes
+      become_user: root
+      shell: |
+        echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
+
+    - name: Add yabai to startup
+      blockinfile:
+        path: ~/.zshrc
+        block: |
+          yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+          yabai --load-sa
+          ~/yabai.sh
+
+    - name: Add nvram config
+      become: yes
+      become_user: root
+      shell: |
+        nvram boot-args=-arm64e_preview_abi
+
+
+

@@ -55,3 +55,12 @@
     # - include_tasks: zed.yaml
     #   tags:
     #     - zed
+    - include_tasks: skhd.yaml
+      tags:
+        - skhd
+    - include_tasks: yabai.yaml
+      tags:
+        - yabai
+    - include_tasks: sketchybar.yaml
+      tags:
+        - sketchybar

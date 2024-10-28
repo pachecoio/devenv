@@ -1,0 +1,21 @@
+- name: Install sketchybar macos
+  tags: sketchybar
+  when: ansible_os_family == 'Darwin'
+  block:
+    - name: Install sketchybar
+      shell: |
+        brew tap FelixKratz/formulae
+        brew install sketchybar
+    - name: Install fonts
+      block:
+        - name: Install sf pro
+          shell: |
+            brew install font-sf-pro
+            brew install --cask sf-symbols
+    - name: Ensure sketchybar dir exists
+      file:
+        path: ~/.config/sketchybar
+        state: directory
+    - name: Stow sketchybar config
+      shell: |
+        stow -t ~/.config/sketchybar/ -d dotfiles sketchybar

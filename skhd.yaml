@@ -1,0 +1,17 @@
+- name: Install skhd macos
+  tags: skhd
+  when: ansible_os_family == "Darwin"
+  block:
+    - name: Install skhd
+      shell:
+        cmd: |
+          brew install koekeishiya/formulae/skhd
+          skhd --start-service
+    - name: Create config dir if not exists
+      ansible.builtin.file:
+        path: ~/.config/skhd
+        state: directory
+    - name: Stow skhd config
+      shell:
+        cmd: |
+          stow -t ~/.config/skhd/ -d dotfiles skhd

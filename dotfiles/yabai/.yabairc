@@ -1,0 +1,12 @@
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+yabai -m config layout bsp
+yabai -m config top_padding 40
+yabai -m config window_gap 10
+# yabai -m config window_opacity on
+# yabai -m config active_window_opacity 1.0
+# yabai -m config normal_window_opacity 0.9
