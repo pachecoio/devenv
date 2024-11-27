@@ -4,7 +4,7 @@ function setup_space {
   local idx="$1"
   local name="$2"
   local space=
-  echo "setup space $idx : $name"
+  # echo "setup space $idx : $name"
 
   space=$(yabai -m query --spaces --space "$idx")
   if [ -z "$space" ]; then

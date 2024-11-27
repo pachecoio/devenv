@@ -107,17 +107,11 @@
 
 cmd - a : yabai -m space --focus 1; /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 cmd - f : yabai -m space --focus 2; /Applications/Zen\ Browser.app/Contents/MacOS/zen --single-instance -d
-# open slack with yabai on space 3
 cmd - s : yabai -m space --focus 3; /Applications/Slack.app/Contents/MacOS/Slack --single-instance -d
+
 cmd - h : yabai -m window --focus west
-
-# Move to window on the right
 cmd - l : yabai -m window --focus east
-
-# Move to window on top
 cmd - k : yabai -m window --focus north
-
-# Move to window at the bottom
 cmd - j : yabai -m window --focus south
 
 # Toggle space 1
