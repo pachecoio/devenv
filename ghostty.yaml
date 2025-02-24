@@ -1,0 +1,21 @@
+- name: Ghostty
+  tags:
+    - ghostty
+  block:
+    - name: Ensure ghostty folder exist
+      ansible.builtin.file:
+        path: ~/.config/ghostty
+        state: directory
+        mode: '0755'
+
+    - name: Install ghostty macos
+      when: ansible_os_family == "Darwin"
+      homebrew:
+        name: ghostty
+        state: present
+        update_homebrew: yes
+
+
+    - name: Stow ghostty files
+      shell: >
+        stow -t ~/.config/ghostty/ -d dotfiles ghostty

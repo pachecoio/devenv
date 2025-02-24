@@ -105,7 +105,8 @@
 #    "qutebrowser"
 # ]
 
-cmd - a : yabai -m space --focus 1; /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+# cmd - a : yabai -m space --focus 1; /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd - a : yabai -m space --focus 1; /Applications/Ghostty.app/Contents/MacOS/ghostty --single-instance -d ~
 cmd - f : yabai -m space --focus 2; /Applications/Zen\ Browser.app/Contents/MacOS/zen --single-instance -d
 cmd - s : yabai -m space --focus 3; /Applications/Slack.app/Contents/MacOS/Slack --single-instance -d
 

@@ -18,8 +18,8 @@
       become_user: root
       lineinfile:
         path: /etc/bluetooth/main.conf
-        line: 'AutoEnable=true'
-        regexp: '^AutoEnable='
+        line: "AutoEnable=true"
+        regexp: "^AutoEnable="
     - name: Start bluetooth service
       become: yes
       become_user: root
@@ -30,4 +30,3 @@
       become_user: root
       shell: |
         systemctl enable bluetooth.service
-

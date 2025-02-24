@@ -64,3 +64,6 @@
     - include_tasks: sketchybar.yaml
       tags:
         - sketchybar
+    - include_tasks: ghostty.yaml
+      tags:
+        - ghostty
