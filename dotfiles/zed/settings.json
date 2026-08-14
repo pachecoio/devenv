@@ -17,6 +17,12 @@
     "dock": "right"
   },
   "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry"
+    },
+    "cursor": {
+      "type": "registry"
+    },
     "opencode": {
       "type": "registry"
     },
@@ -24,6 +30,9 @@
       "type": "registry"
     },
     "claude-acp": {
+      "default_config_options": {
+        "mode": "auto"
+      },
       "type": "registry"
     },
     "amp-acp": {
@@ -113,11 +122,11 @@
       }
     }
   },
-  "base_keymap": "VSCode",
+  "base_keymap": "Zed",
   "theme": {
     "mode": "system",
     "light": "Catppuccin Mocha",
-    "dark": "Catppuccin Mocha - No Italics"
+    "dark": "Catppuccin Mocha (Blur)"
   },
   "vim_mode": true,
   "ui_font_size": 18.0,
@@ -125,6 +134,9 @@
   "buffer_font_family": "FiraCode Nerd Font Mono",
   "format_on_save": "on",
   "relative_line_numbers": "enabled",
+  "indent_guides": {
+    "enabled": false
+  },
   "agent_ui_font_size": 20.0,
   "agent_buffer_font_size": 20.0,
   "terminal": {

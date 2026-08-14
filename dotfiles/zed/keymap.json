@@ -69,6 +69,7 @@
       // Worktree (D3): replaces nvim <leader>at task-workflow. Creates/switches a
       // git worktree; run the agent panel (cmd-i) inside it for AI-in-worktree.
       "space a t": "git::Worktree",
+      "space a c": "agent::ToggleFocus",
       "space o s": [
         "task::Spawn",
         {
@@ -88,10 +89,10 @@
         }
       ],
       "space e": "editor::ToggleTabBar",
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
       // tmux-prefix-style window-tab switch (shadows vim ctrl-a increment here)
       "ctrl-a h": "window::ShowPreviousWindowTab",
       "ctrl-a l": "window::ShowNextWindowTab"
@@ -180,6 +181,14 @@
     }
   },
   {
+    // Chat input (ACP agents + Zed-native), normal mode only: `space w q` closes
+    // the AI panel, mirroring the `space q` close pattern used elsewhere.
+    "context": "((AcpThread > Editor) || (MessageEditor > Editor)) && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space w q": "workspace::CloseActiveDock"
+    }
+  },
+  {
     // Chat transcript when focused directly (e.g. clicked in): bare vim j/k scroll.
     "context": "AgentPanel && !MessageEditor",
     "bindings": {
@@ -190,10 +199,10 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
       // tmux-prefix-style window-tab switch (left / right) across open projects
       "ctrl-a h": "window::ShowPreviousWindowTab",
       "ctrl-a l": "window::ShowNextWindowTab"
