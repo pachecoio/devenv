@@ -23,6 +23,7 @@ This repository uses a **modular Ansible playbook structure** where `main.yaml` 
 - **Development languages**: `node.yaml`, `rust.yaml`, `python.yaml`
 - **Editors/Tools**: `zed.yaml`, `neovim.yaml`, `git.yaml`, `karabiner.yaml`
 - **Infrastructure**: `nix.yaml`, `ngrok.yaml`, `ssh.yaml`, `tmux.yaml`
+- **Desktop (Arch/Omarchy)**: `omarchy.yaml`
 
 Configuration files are managed through **GNU Stow** for symlink-based dotfile management, with source files in the `dotfiles/` directory.
 
@@ -93,7 +94,7 @@ ansible-playbook -i localhost, main.yaml --tags zed,git
 ansible-playbook -i localhost, main.yaml --tags python,node,rust
 
 # Apply dotfile changes (run from dotfiles directory)
-cd dotfiles && stow fish ghostty zed karabiner starship tmux
+cd dotfiles && stow fish ghostty zed karabiner starship tmux hypr
 ```
 
 ## Available Tags
@@ -113,6 +114,7 @@ cd dotfiles && stow fish ghostty zed karabiner starship tmux
 | `ngrok` | Ngrok | Tunnel service setup |
 | `karabiner` | Karabiner Elements | Keyboard remapping (macOS) |
 | `tmux` | Tmux | Terminal multiplexer setup |
+| `omarchy` | Omarchy/Hyprland | Hyprland keybindings config (Arch Linux) |
 
 ## Key Configurations
 

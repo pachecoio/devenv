@@ -42,7 +42,7 @@ install-component: ## Install specific components (use TAGS=tag1,tag2)
 
 stow: ## Apply dotfile configurations using GNU Stow
 	@echo "🔗 Applying dotfile configurations..."
-	cd dotfiles && stow fish ghostty zed karabiner starship tmux neovim
+	cd dotfiles && stow fish ghostty zed karabiner starship tmux neovim hypr
 
 clean: ## Clean up temporary files and reset
 	@echo "🧹 Cleaning up..."
@@ -83,6 +83,9 @@ install-karabiner: ## Install Karabiner Elements (macOS)
 
 install-tmux: ## Install Tmux
 	ansible-playbook -i localhost, main.yaml --tags tmux
+
+install-omarchy: ## Install Omarchy Hyprland config (Arch Linux)
+	ansible-playbook -i localhost, main.yaml --tags omarchy
 
 # Validation targets
 check: ## Check Ansible syntax

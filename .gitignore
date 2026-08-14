@@ -1,1 +1,6 @@
 .mcp.json
+
+# Fisher-managed fish functions (installed by the fisher/nvm plugins, not hand-authored)
+dotfiles/fish/functions/fisher.fish
+dotfiles/fish/functions/nvm.fish
+dotfiles/fish/functions/_nvm_*.fish

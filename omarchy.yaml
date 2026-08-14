@@ -1,0 +1,13 @@
+- name: Omarchy config
+  tags:
+    - omarchy
+  when: ansible_distribution == "Archlinux"
+  block:
+    - name: Ensure hypr config dir exists
+      file:
+        path: ~/.config/hypr
+        state: directory
+
+    - name: Stow hypr config
+      shell: >
+        stow --adopt -t ~/.config/hypr/ -d dotfiles hypr

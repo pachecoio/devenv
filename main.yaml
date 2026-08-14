@@ -41,3 +41,6 @@
     - include_tasks: tmux.yaml
       tags:
         - tmux
+    - include_tasks: omarchy.yaml
+      tags:
+        - omarchy
