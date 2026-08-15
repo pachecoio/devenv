@@ -134,6 +134,7 @@
       "r": "project_panel::Rename",
       "q": "workspace::ToggleLeftDock",
       "-": "workspace::ToggleLeftDock",
+      "space w q": "workspace::ToggleRightDock",
       // Root navigation: `g g` jumps to the top entry, `z m` collapses the whole
       // tree. The editor's `_` SendKeystrokes chain drives both; `_` here also
       // re-roots when focus is already in the panel.

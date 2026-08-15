@@ -1,0 +1,64 @@
+- name: Install and configure Herdr
+  tags: [herdr]
+  block:
+    - name: Install Herdr (macOS)
+      community.general.homebrew:
+        name: herdr
+        state: present
+      when: ansible_facts.os_family == "Darwin"
+
+    - name: Check whether Herdr is installed (Linux)
+      ansible.builtin.command: herdr --version
+      register: herdr_installed
+      changed_when: false
+      failed_when: false
+      check_mode: false
+      when: ansible_facts.system == "Linux"
+
+    - name: Download Herdr installer (Linux)
+      ansible.builtin.get_url:
+        url: https://herdr.dev/install.sh
+        dest: /tmp/herdr-install.sh
+        mode: "0755"
+      when:
+        - ansible_facts.system == "Linux"
+        - herdr_installed.rc != 0
+
+    - name: Install Herdr (Linux)
+      ansible.builtin.command: /tmp/herdr-install.sh
+      args:
+        creates: "{{ ansible_facts.env.HOME }}/.local/bin/herdr"
+      when:
+        - ansible_facts.system == "Linux"
+        - herdr_installed.rc != 0
+
+    - name: Inspect existing Herdr config
+      ansible.builtin.stat:
+        path: "{{ ansible_facts.env.HOME }}/.config/herdr/config.toml"
+        follow: false
+      register: herdr_config
+
+    - name: Back up unmanaged Herdr config
+      ansible.builtin.copy:
+        src: "{{ ansible_facts.env.HOME }}/.config/herdr/config.toml"
+        dest: "{{ ansible_facts.env.HOME }}/.config/herdr/config.toml.pre-devenv"
+        remote_src: true
+        force: false
+        mode: preserve
+      when:
+        - herdr_config.stat.exists
+        - not herdr_config.stat.islnk
+
+    - name: Remove unmanaged Herdr config after backup
+      ansible.builtin.file:
+        path: "{{ ansible_facts.env.HOME }}/.config/herdr/config.toml"
+        state: absent
+      when:
+        - herdr_config.stat.exists
+        - not herdr_config.stat.islnk
+
+    - name: Apply Herdr dotfiles using Stow
+      ansible.builtin.command:
+        cmd: stow --restow -t "{{ ansible_facts.env.HOME }}" herdr
+        chdir: "{{ ansible_facts.env.HOME }}/dev/devenv/dotfiles"
+      changed_when: false

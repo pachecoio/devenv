@@ -1,0 +1,65 @@
+# Keep Herdr close to the tmux workflow in dotfiles/tmux/.tmux.conf.
+onboarding = false
+
+[theme]
+# Dracula is the closest built-in equivalent to the tmux Dracula plugin.
+name = "dracula"
+
+[terminal]
+# Resolve Fish from PATH so this works with /usr/bin on Linux and Homebrew on macOS.
+default_shell = "fish"
+shell_mode = "auto"
+# New panes and tabs inherit the focused pane's working directory.
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+a"
+
+# Tabs are the Herdr equivalent of tmux windows.
+new_tab = "prefix+c"
+rename_tab = "prefix+comma"
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+switch_tab = "prefix+1..9"
+
+# Workspaces are the closest equivalent to tmux sessions.
+rename_workspace = "prefix+shift+4"
+
+# Match the tmux split and pane-navigation bindings.
+split_vertical = "prefix+v"
+split_horizontal = "prefix+s"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# Herdr resizes one cell per press (tmux used five cells per press).
+resize_pane_left = "shift+left"
+resize_pane_down = "shift+down"
+resize_pane_up = "shift+up"
+resize_pane_right = "shift+right"
+
+# Reload without restarting panes.
+reload_config = "prefix+r"
+
+# Keep vi-style movement in Herdr's navigate mode.
+navigate_pane_left = "h"
+navigate_pane_down = "j"
+navigate_pane_up = "k"
+navigate_pane_right = "l"
+
+# Equivalent to the tmux `prefix+o` OpenCode window, but as a temporary pane.
+[[keys.command]]
+key = "prefix+o"
+type = "pane"
+command = "opencode"
+description = "open OpenCode"
+
+[ui]
+mouse_capture = true
+copy_on_select = true
+tab_bar_position = "top"
+# Use tmux-like internal dividers without an outside frame or pane gaps.
+pane_borders = true
+pane_outer_borders = false
+pane_gaps = false

@@ -7,6 +7,35 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "ssh_connections": [
+    {
+      "host": "srv1775882.taileea61f.ts.net",
+      "username": "pacheco",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/pacheco/dev/devenv/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/pacheco/dev/waterviews/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/pacheco/dev/waterviews/api/./"
+          ]
+        },
+        {
+          "paths": [
+            "/home/pacheco/personal"
+          ]
+        }
+      ]
+    }
+  ],
   "outline_panel": {
     "dock": "right"
   },
@@ -59,13 +88,13 @@
     "git_status": false
   },
   "title_bar": {
+    "show_branch_status_icon": true,
     "show_menus": false,
     "show_sign_in": true,
     "show_user_picture": false,
     "show_onboarding_banner": false,
     "show_project_items": true,
-    "show_branch_name": true,
-    "show_branch_icon": true
+    "show_branch_name": true
   },
   "debugger": {
     "button": false
@@ -137,6 +166,9 @@
   "indent_guides": {
     "enabled": false
   },
+  "gutter": {
+    "line_numbers": false
+  },
   "agent_ui_font_size": 20.0,
   "agent_buffer_font_size": 20.0,
   "terminal": {
@@ -159,7 +191,7 @@
     "dark": "Catppuccin Mocha"
   },
   "project_panel": {
-    "hide_hidden": false,
+    "hide_hidden": true,
     "hide_root": false,
     "git_status": true,
     "folder_icons": true,
